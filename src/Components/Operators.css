@@ -1,0 +1,17 @@
+.operator{
+    display: flex;
+    height: 2em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: #FFA500;
+    color: #fff;
+    margin: 2px;
+    border-radius: 100px;
+}
+
+.operator:hover{
+    background-color: #FF8C00;
+}

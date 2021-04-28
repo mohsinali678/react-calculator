@@ -1,0 +1,31 @@
+.button{
+    display: flex;
+    height: 2em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: #282828;
+    color: #fff;
+    margin: 2px;
+    border-radius: 100px;
+}
+
+.zero{
+    display: flex;
+    height: 2em;
+    flex: 2;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: #282828;
+    color: #fff;
+    margin: 2px;
+    border-radius: 100px;
+}
+
+.button:hover, .zero:hover{
+    background-color: #000000;
+}
