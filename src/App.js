@@ -21,11 +21,12 @@ class App extends Component {
   
   // Add Value to Input
   addToInput = inputValue => {
-    const {input} = this.state;
+    let {input} = this.state;
+    input = input.replaceAll(",", "");
     if(input !== "0"){
-      let number = input + inputValue
+      let number = input + inputValue;
       this.setState({
-        input : number
+        input : (Number(number).toLocaleString().toString())
       });
     }else{
       this.setState({
