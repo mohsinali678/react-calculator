@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       input:"0",
-      currentNumber:"",
+      currentNumber:"0",
       previousNumber:"",
       operator:""
     };
@@ -26,11 +26,13 @@ class App extends Component {
     if(input !== "0"){
       let number = input + inputValue;
       this.setState({
-        input : (Number(number).toLocaleString().toString())
+        input : (Number(number).toLocaleString().toString()),
+        currentNumber : (Number(number).toLocaleString().toString())
       });
     }else{
       this.setState({
-        input : inputValue
+        input : inputValue,
+        currentNumber : inputValue
       });
     }
   };
@@ -53,14 +55,14 @@ class App extends Component {
 
   //  Clear Current Input
   clearEntry = () => {
-    this.setState({input:"", previousNumber:""})
+    this.setState({input:"0", currentNumber:"0"})
   }
 
   //  Reset Everything
   allClear = () => {
     this.setState({
       input:"0",
-      currentNumber:"",
+      currentNumber:this.state.input,
       previousNumber:"",
       operator:""
     })
@@ -70,7 +72,8 @@ class App extends Component {
   addition = () => {
     
     this.setState({
-      previousNumber:this.state.input,
+      previousNumber:this.state.currentNumber,
+      currentNumber : "",
       input:"",
       operator:"plus"
     })
@@ -124,31 +127,41 @@ class App extends Component {
 
   // Evalute Expression
   evaluate = () => {
-    let {input, currentNumber, previousNumber, operator} = this.state;
+    let {currentNumber, previousNumber, operator} = this.state;
 
-    currentNumber = input;
     
     switch(true){
       case operator === "plus":
-        this.setState({ input : parseInt(previousNumber) + parseInt(currentNumber) })
+        this.setState({ 
+          input : parseInt(previousNumber) + parseInt(currentNumber),
+          currentNumber : parseInt(previousNumber) + parseInt(currentNumber)
+         });
         break;
       case operator === "subtract":
-        this.setState({ input : parseInt(previousNumber) - parseInt(currentNumber) })
+        this.setState({ 
+          input : parseInt(previousNumber) - parseInt(currentNumber),
+          currentNumber : parseInt(previousNumber) - parseInt(currentNumber)
+         })
         break;
       case operator === "multiply":
-        this.setState({ input : parseInt(previousNumber) * parseInt(currentNumber) })
+        this.setState({ 
+          input : parseInt(previousNumber) * parseInt(currentNumber),
+          currentNumber : parseInt(previousNumber) * parseInt(currentNumber)
+         })
         break;
       case operator === "divide":
-        this.setState({ input : parseInt(previousNumber) / parseInt(currentNumber) })
+        this.setState({ 
+          input : parseInt(previousNumber) / parseInt(currentNumber),
+          currentNumber : parseInt(previousNumber) / parseInt(currentNumber)
+         })
         break;
       default:
-        this.setState({ input: "NaN"})
+        this.setState({ input: "NaN", currentNumber : "NaN"})
     }
   }
   
-
   render (){
-    const {input, previousNumber} = this.state;
+    const {input, currentNumber} = this.state;
     return (
       <div className="App">
         <div style={{margin: "20px"}}>Project: <strong> React Calculator </strong> <br/><br/> Designed and Developed by:
@@ -164,7 +177,7 @@ class App extends Component {
           <div className="row">
             
             {
-            previousNumber === "" ?
+            currentNumber === "0" ?
             <Peripherals handleClick={this.allClear}>AC</Peripherals>
             :
             <Peripherals handleClick={this.clearEntry}>CE</Peripherals>
